@@ -1,0 +1,18 @@
+A simple example:
+
+iu.init(document.getElementById('#addpicture'),'ajax/upload.php');
+iu.inProgress=function(name){
+    s('#uploading').html("<img align='top' src='img/loading.png'/>Uploading "+name.name+". Please wait...");
+}
+iu.success=function(res){
+	s('#uploading').html(" ");
+	var res = JSON.parse(res);
+	if(res.msg == 'error'){
+		alert("An error occured while uploading the file. PNG files are not supported!");
+	}
+}
+iu.warning=function(){
+	if(globalAttachedPictureID!=0){
+		alert('If you choose another file, the current one will be deleted.');
+	}
+}
